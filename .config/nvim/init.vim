@@ -1,5 +1,5 @@
 syntax on
-set nocompatible
+"set nocompatible
 set shortmess+=I
 set number
 "set cmdheight =2 
@@ -14,7 +14,9 @@ set smartcase
 set hlsearch
 set incsearch
 set nohlsearch
-"set clipboard=unnamedplus
+set clipboard+=unnamedplus
+set cursorline
+set cursorcolumn
 
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
@@ -56,14 +58,20 @@ Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'} "auto completion tool
 Plug 'scrooloose/nerdtree' "Tree navigator
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'https://github.com/kien/ctrlp.vim' "fuzzy finder 
 "Plug 'tsony-tsonev/nerdtree-git-plugi' "color for tree
 "Plug 'Xuyuanp/nerdtree-git-plugin' "icons for tree
 Plug 'scrooloose/nerdcommenter' "samrt commenter 
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'gruvbox-community/gruvbox' " my favorite colorscheme
-Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+"Plug 'gruvbox-community/gruvbox' " my favorite colorscheme
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'joshdick/onedark.vim'
+Plug 'sainnhe/gruvbox-material'
+"Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'EdenEast/nightfox.nvim' 
+Plug 'marko-cerovac/material.nvim'
 "Plug 'flazz/vim-colorschemes'
 Plug 'christoomey/vim-tmux-navigator' " allows simple navigation
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
@@ -76,6 +84,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/glepnir/dashboard-nvim' "Dashboard
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } "bufferline to show opened buffers 
 Plug 'https://github.com/tpope/vim-surround' "surrounds 
+Plug 'eandrju/cellular-automaton.nvim' "games
+Plug 'vim-scripts/candy.vim'
 call plug#end()
 
 "comminting 
@@ -105,11 +115,30 @@ function! IsNERDTreeOpen()
 
 "scheme 
 "ex : let g:gruvbox_(option) = '(value)'
-colorscheme darkblue
-colorscheme gruvbox 
-let g:gruvbox_bold = '1'
-let g:gruvbox_contrast_dark = 'soft'
-let g:gruvbox_transparent_bg = '0'
+"let g:material_style='Oceanic'
+"colorscheme material
+"let g:gruvbox_transparent_bg = '1'
+"let g:gruvbox_contrast_dark
+"colorscheme gruvbox 
+"colorscheme catppuccin 
+        "if has('termguicolors')
+	  "set termguicolors
+        "endif
+
+        " For dark version.
+	"set background=dark
+
+        " Available values: 'hard', 'medium'(default), 'soft'
+	"let g:gruvbox_material_background = 'hard'
+	"let g:gruvbox_material_foreground = 'ordinal'
+	"let g:gruvbox_material_transparent_background = 1
+
+        " For better performance
+	"let g:gruvbox_material_better_performance = 1
+	"let g:gruvbox_material_diagnostic_line_highlight = 1
+	"let g:gruvbox_material_disable_terminal_colors = 1
+
+"colorscheme gruvbox-material
 
 "coc config 
 "for snippets congig use :CocCommand snippets.editSnippets 
@@ -170,7 +199,7 @@ nmap <F8> :TagbarToggle<CR>
 "let g:Hexokinase_highlighters = [ 'background' ]
 
 "bufferline 
-set termguicolors
+"set termguicolors
 lua << EOF
 require("bufferline").setup{
    options = {
@@ -183,7 +212,7 @@ require("bufferline").setup{
 		separator = true ,
 	        }
 	},
-	        separator_style = "thick",
+	        separator_style = 'thin' , 
 	     }	
  }
 EOF
@@ -194,7 +223,8 @@ noremap <silent> <C-p> :bp<CR>
 let g:ctrlp_map = '<c-x>'
 
 
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='onedark'
+"let g:airline_theme='base16_gruvbox_dark_hard'
 "let g:airline#extensions#tabline#enabled = 5
 "let g:airline#extensions#tabline#formatter = 'unique_tail'
 "let g:airline#extensions#tabline#left_sep = ''
@@ -203,4 +233,17 @@ let g:airline_theme='base16_gruvbox_dark_hard'
   let g:airline_left_alt_sep = ''
   let g:airline_right_sep = ''
   let g:airline_right_alt_sep = ''
- 
+
+"let g:nightfox-palettes = 'Carbonfox'
+"colorscheme nightfox
+"let g:material_style = 'deep ocean'
+"colorscheme material
+
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
+colorscheme onedark
