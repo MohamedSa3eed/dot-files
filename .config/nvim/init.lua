@@ -265,6 +265,8 @@ cmp.setup {
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[NVIM_LUA]",
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
@@ -273,6 +275,8 @@ cmp.setup {
     end,
   },
   sources = {
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
@@ -289,6 +293,10 @@ cmp.setup {
     native_menu = false,
   },
 }
+
+--lsp
+require "user.lsp"
+
 
 -- Install your plugins here
 return packer.startup(function(use)
@@ -307,10 +315,18 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp" -- lsp completions
+  use "hrsh7th/cmp-nvim-lua" -- lua completions
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  
+  -- LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/mason.nvim" -- simple to use language server installer
+  use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
+  use 'jose-elias-alvarez/null-ls.nvim' -- LSP diagnostics and code actions
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
