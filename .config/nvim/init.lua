@@ -36,6 +36,7 @@ vim.opt.expandtab = true                        -- convert tabs to spaces
 vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.cursorline = true                       -- highlight the current line
+vim.opt.cursorcolumn = true
 vim.opt.number = true                           -- set numbered lines
 vim.opt.relativenumber = true                  -- set relative numbered lines
 vim.opt.numberwidth = 4                         -- set number column width to 2 {default 4}
@@ -121,8 +122,8 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Telescope --
--- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = true }))<cr>", opts)
+keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+--keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- packer 
@@ -303,8 +304,8 @@ cmp.setup {
 require "user.lsp"
 
 --Telescope
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
+local tele_status_ok, telescope = pcall(require, "telescope")
+if not tele_status_ok then
   return
 end
 
@@ -409,8 +410,8 @@ telescope.setup {
 }
 
 --Treesitter
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
+local sitter_status_ok, configs = pcall(require, "nvim-treesitter.configs")
+if not sitter_status_ok then
   return
 end
 
@@ -444,6 +445,7 @@ return packer.startup(function(use)
   --colorscheme 
   use 'folke/tokyonight.nvim'
   use "lunarvim/darkplus.nvim"  --same as vscode 
+  use "sainnhe/gruvbox-material"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
