@@ -126,6 +126,12 @@ keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 --keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
+-- NerdCommenter --
+keymap("n", "gcc", "<plug>NERDCommenterToggle", opts)
+keymap("v", "gcc", "<plug>NERDCommenterToggle", opts)
+keymap("x", "gcc", "<plug>NERDCommenterToggle", opts)
+
+
 -- packer 
 local fn = vim.fn
 
@@ -476,6 +482,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  use 'scrooloose/nerdcommenter' --smart & easy commenter 
 
   --colorscheme 
   use 'folke/tokyonight.nvim'
