@@ -496,7 +496,6 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 nvim_tree.setup {
     disable_netrw = true,
     hijack_netrw = true,
-    --open_on_setup = false,
     ignore_ft_on_setup = {
         "startify",
         "dashboard",
@@ -545,10 +544,10 @@ nvim_tree.setup {
         number = false,
         relativenumber = false,
     },
-    actions = {
-        quit_on_open = true,
-        window_picker = { enable = true },
-    },
+    --actions = {
+        --quit_on_open = true,
+        --window_picker = { enable = true },
+    --},
     renderer = {
         highlight_git = true,
         root_folder_modifier = ":t",
@@ -649,7 +648,7 @@ bufferline.setup {
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
-    indicator_icon = "▎",
+    --indicator_icon = "▎",
     buffer_close_icon = "",
     -- buffer_close_icon = '',
     modified_icon = "●",
@@ -888,11 +887,13 @@ return packer.startup(function(use)
   use "akinsho/bufferline.nvim" --sort buffers in line 
   use "moll/vim-bbye" --for closing buffers in bufferline
   use "akinsho/toggleterm.nvim" --toggling terminal inside nvim
+  use "tpope/vim-surround" --control surrounds 
 
   --colorscheme 
   use 'folke/tokyonight.nvim'
   use "lunarvim/darkplus.nvim"  --same as vscode 
   use "sainnhe/gruvbox-material"
+  use 'navarasu/onedark.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
