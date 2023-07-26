@@ -51,7 +51,7 @@ vim.opt.shortmess:append "c"
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
-vim.cmd[[colorscheme tokyonight-storm]]
+vim.cmd[[colorscheme onedark]]
 
 --key-maps config
 local opts = { noremap = true, silent = true }
@@ -318,7 +318,7 @@ if not tele_status_ok then
   return
 end
 
-telescope.load_extension('media_files')
+--telescope.load_extension('media_files')
 
 local actions = require "telescope.actions"
 
@@ -429,14 +429,14 @@ configs.setup {
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = false, -- false will disable the whole extension
     disable = { "" }, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { "yaml" } },
+  indent = { enable = false, disable = { "yaml" } },
   rainbow = {
-      enable = true,
-      -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+      enable = false,
+       disable = {""}, --list of languages you want to disable the plugin for
       extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
       max_file_lines = nil, -- Do not enable for files with more than n lines, int
       -- colors = {}, -- table of hex strings
@@ -496,12 +496,7 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 nvim_tree.setup {
     disable_netrw = true,
     hijack_netrw = true,
-    ignore_ft_on_setup = {
-        "startify",
-        "dashboard",
-        "alpha",
-    },
-    open_on_tab = false,
+   open_on_tab = false,
     hijack_cursor = false,
     update_cwd = true,
     hijack_directories = {
@@ -529,10 +524,10 @@ nvim_tree.setup {
     },
     view = {
         width = 30,
-        height = 30,
+        --height = 30,
         hide_root_folder = false,
         side = "left",
-        auto_resize = true,
+        --auto_resize = true,
         mappings = {
             custom_only = false,
             list = {
@@ -835,7 +830,7 @@ local location = {
 local progress = function()
 	local current_line = vim.fn.line(".")
 	local total_lines = vim.fn.line("$")
-	local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+	local chars = { "██" , "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁", "__"}
 	local line_ratio = current_line / total_lines
 	local index = math.ceil(line_ratio * #chars)
 	return chars[index]
@@ -875,6 +870,12 @@ lualine.setup({
 	extensions = {},
 })
 
+--indentation guides 
+require('indent_blankline').setup {
+  char = '┊',
+  show_trailing_blankline_indent = false,
+}
+
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
@@ -888,6 +889,8 @@ return packer.startup(function(use)
   use "moll/vim-bbye" --for closing buffers in bufferline
   use "akinsho/toggleterm.nvim" --toggling terminal inside nvim
   use "tpope/vim-surround" --control surrounds 
+  use "github/copilot.vim" -- github copilot
+  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
 
   --colorscheme 
   use 'folke/tokyonight.nvim'
@@ -915,13 +918,15 @@ return packer.startup(function(use)
   use 'jose-elias-alvarez/null-ls.nvim' -- LSP diagnostics and code actions
 
   --Telescope
-  use "nvim-telescope/telescope.nvim"
-  use 'nvim-telescope/telescope-media-files.nvim'
+use {
+  'nvim-telescope/telescope.nvim',
+  requires = { {'nvim-lua/plenary.nvim'} }
+}
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
-   -- run = ":TSUpdate",
+    run = ":TSUpdate",
   }
   use "p00f/nvim-ts-rainbow"
   --use "nvim-treesitter/playground"
