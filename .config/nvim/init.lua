@@ -472,7 +472,7 @@ if not sitter_status_ok then
 end
 
 configs.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {"c", "python", "lua", "cpp","markdown", "yaml", "c_sharp", "cmake", "make", "comment"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {
@@ -938,6 +938,7 @@ return packer.startup(function(use)
   use "tpope/vim-surround" --control surrounds 
   use "github/copilot.vim" -- github copilot
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  use 'ap/vim-css-color' --highlight color background
 
   --colorscheme 
   use 'folke/tokyonight.nvim'
