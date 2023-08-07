@@ -76,6 +76,11 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
   vim.keymap.set('n','gr',require('telescope.builtin').lsp_references,{})
+  vim.keymap.set('n','<leader>wa', vim.lsp.buf.add_workspace_folder,{})
+  vim.keymap.set('n','<leader>wr', vim.lsp.buf.remove_workspace_folder,{})
+  vim.keymap.set('n','<leader>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, opts)
   vim.keymap.set('n', '<leader>k', function()
       vim.lsp.buf.format { async = true }
     end, opts)
