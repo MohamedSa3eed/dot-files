@@ -26,6 +26,7 @@ _comp_options+=(globdots)   # Include hidden files.
 #vim mode
 bindkey -v
 export KEYTIMEOUT=1
+export EDITOR=/usr/bin/nvim
 
 #alias 
 alias ls='lsd -alh'
@@ -33,15 +34,15 @@ alias cat='bat'
 alias pc='cd ~/mypc/pc'
 alias mypc='thunar ~/mypc/pc &'
 alias iti="cd ~/mypc/pc/iti"
-alias proteus="~/mypc/Program\ Files\ \(x86\)/Labcenter\ Electronics/Proteus\ 8\ Professional/BIN/PDS.EXE &"
+#alias proteus="~/mypc/Program\ Files\ \(x86\)/Labcenter\ Electronics/Proteus\ 8\ Professional/BIN/PDS.EXE &"
 alias cls='clear'
-alias nv='nvim'
+alias v='nvim'
 
 # Load zsh plugins
  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 
  source /usr/share/zsh/plugins/emoji-cli/emoji-cli.zsh
- jp2a ~/Pictures/stikers/omnitrix.png --size=30x15 --color -i
+ #jp2a ~/Pictures/stikers/omnitrix.png --size=30x15 --color -i
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
