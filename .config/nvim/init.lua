@@ -51,7 +51,7 @@ vim.opt.shortmess:append "c"
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
-require("tokyonight").setup({
+--[[require("tokyonight").setup({
   -- your configuration comes here
   -- or leave it empty to use the default settings
   style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
@@ -92,7 +92,50 @@ require("tokyonight").setup({
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors) end,
 })
-vim.cmd[[colorscheme tokyonight]]
+]]
+require("one_monokai").setup({
+    transparent = false,  -- enable transparent window
+    colors = {
+        --lmao = "#ffffff", -- add new color
+        --red = "#880808", -- replace default color
+        fg = "#abb2bf",
+        bg = "#282c34",
+        gray = "#676e7b",
+        pink = "#e06c75",
+        green = "#98c379", -- function name
+        cyan = "#56b6c2",
+        aqua = "#61afef",
+        yellow = "#e5c07b",
+        purple = "#c678dd",
+        peanut = "#f6d5a4",
+        orange = "#d19a66", --function arguments
+        dark_pink = "#ff008c",
+        dark_cyan = "#2b8db3",
+        red = "#f75f5f",
+        dark_red = "#d03770",
+        white = "#d7d7ff",
+        light_gray = "#9ca3b2",
+        dark_gray = "#4b5261",
+        vulcan = "#383a3e",   --coursor line
+        dark_green = "#2d2e27",
+        dark_blue = "#26292f",
+        black = "#1e2024",
+        none = "NONE",
+        --none = "#1C4E59",
+    },
+    themes = function(colors)
+        -- change highlight of some groups,
+        -- the key and value will be passed respectively to "nvim_set_hl"
+        return {
+            Normal = { bg = colors.bg },
+            DiffChange = { fg = colors.red:darken(1.3) },
+            ErrorMsg = { fg = colors.pink, standout = true },
+            ["@lsp.type.keyword"] = { link = "@keyword" }
+        }
+    end,
+    italics = true, -- enable italics
+})
+vim.cmd[[colorscheme one_monokai]]
 
 --key-maps config
 local opts = { noremap = true, silent = true }
@@ -945,6 +988,7 @@ return packer.startup(function(use)
   use "lunarvim/darkplus.nvim"  --same as vscode 
   use "sainnhe/gruvbox-material"
   use 'navarasu/onedark.nvim'
+  use 'cpea2506/one_monokai.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -981,7 +1025,9 @@ use {
   
   --NvimTree 
   use 'kyazdani42/nvim-web-devicons' --icons for nvim-tree
-  use 'kyazdani42/nvim-tree.lua' 
+  use{ "kyazdani42/nvim-tree.lua", 
+       commit = "ace6422"
+     }
 
   -- Git
   use "lewis6991/gitsigns.nvim"
