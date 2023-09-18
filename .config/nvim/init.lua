@@ -121,7 +121,31 @@ require("one_monokai").setup({
         dark_blue = "#26292f",
         black = "#1e2024",
         none = "NONE",
-        --none = "#1C4E59",
+        --
+        -- darken colors
+         --fg = "#e6e6e6",
+        --bg = "#2c2c2c",
+        --gray = "#7e868d",
+        --pink = "#f66f77",
+        --green = "#a2c86d",  -- function name
+        --cyan = "#71c7cf",
+        --aqua = "#79b6df",
+        --yellow = "#f0cc7e",
+        --purple = "#dca0e2",
+        --peanut = "#facd7a",
+        --orange = "#e5b97e",  -- function arguments
+        --dark_pink = "#ff0099",
+        --dark_cyan = "#35a7c8",
+        --red = "#ff6666",
+        --dark_red = "#d03770",
+        --white = "#f0f0f0",
+        --light_gray = "#c2c8d0",
+        --dark_gray = "#5d646d",
+        --vulcan = "#43464a",   -- cursor line
+        --dark_green = "#373822",
+        --dark_blue = "#2e3139",
+        --black = "#1e2024",
+        --none = "NONE",       
     },
     themes = function(colors)
         -- change highlight of some groups,
@@ -224,6 +248,8 @@ keymap("x", "gcc", "<plug>NERDCommenterToggle", opts)
 -- NvimTree --
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
+-- Transparent
+keymap("n", "gt", ":TransparentToggle<cr>", opts)
 
 -- packer 
 local fn = vim.fn
@@ -525,7 +551,7 @@ configs.setup {
   },
   indent = { enable = false, disable = { "yaml" } },
   rainbow = {
-      enable = false,
+      enable = true,
        disable = {""}, --list of languages you want to disable the plugin for
       extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
       max_file_lines = nil, -- Do not enable for files with more than n lines, int
@@ -966,6 +992,31 @@ require('indent_blankline').setup {
   show_trailing_blankline_indent = false,
 }
 
+--copilot 
+-- use this table to disable/enable filetypes
+vim.g.copilot_filetypes = { xml = false }
+
+-- since most are enabled by default you can turn them off
+-- using this table and only enable for a few filetypes
+-- vim.g.copilot_filetypes = { ["*"] = false, python = true }
+
+ vim.cmd[[imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")]]
+ vim.g.copilot_no_tab_map = true
+-- vim.keymap.set.keymap("i", "<C-a>", ":copilot#Accept('\\<CR>')<CR>", { silent = true })
+
+-- <C-]>                   Dismiss the current suggestion.
+-- <Plug>(copilot-dismiss)
+--
+--                                                 *copilot-i_ALT-]*
+-- <M-]>                   Cycle to the next suggestion, if one is available.
+-- <Plug>(copilot-next)
+--
+--                                                 *copilot-i_ALT-[*
+-- <M-[>                   Cycle to the previous suggestion.
+-- <Plug>(copilot-previous)
+
+vim.cmd[[highlight CopilotSuggestion guifg=#555555 ctermfg=8]]
+
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
@@ -989,6 +1040,7 @@ return packer.startup(function(use)
   use "sainnhe/gruvbox-material"
   use 'navarasu/onedark.nvim'
   use 'cpea2506/one_monokai.nvim'
+  use 'xiyaowong/transparent.nvim' --transparent background
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
