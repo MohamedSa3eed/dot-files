@@ -40,13 +40,18 @@ bindsym $mod+d exec --no-startup-id dmenu_recency
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
 
+
 exec --no-startup-id flameshot
-
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
 exec --no-startup-id volumeicon
+exec --no-startup-id "python ~/.config/bar.py"
+exec --no-startup-id "~/.config/BATCONTROL.sh"
+exec_always "~/.config/set-multilingual-keyboard.sh"
+bindsym XF86Launch1 exec "rog-control-center"
+bindsym XF86KbdBrightnessUp exec "asusctl -n"
+bindsym XF86KbdBrightnessDown exec "asusctl -p"
+bindsym XF86Launch2 exec "asusctl led-mode -p"
+bindsym XF86Launch3 exec "asusctl led-mode -n"
+bindsym XF86Launch4 exec "asusctl profile -n"
 bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
@@ -55,15 +60,15 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+ bindsym XF86MonBrightnessUp exec "~/.config/brightness.sh up"
+ bindsym XF86MonBrightnessDown exec "~/.config/brightness.sh down"
 
 # Start Applications
 bindsym $mod+Ctrl+b exec alacritty -e 'bmenu'
 bindsym $mod+F2 exec brave
-bindsym $mod+F3 exec dolphin
+#bindsym $mod+F3 exec dolphin
 bindsym $mod+F4 exec ~/mypc/Program\ Files\ \(x86\)/Labcenter\ Electronics/Proteus\ 8\ Professional/BIN/PDS.EXE
-# bindsym $mod+F3 exec ranger
+ bindsym $mod+F3 exec alacritty -e 'ranger'
 #bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec alacritty -e 'mocp'
 bindsym $mod+Shift+t exec --no-startup-id "pkill picom ; picom -b --animations --animation-window-mass 0.5 --animation-for-open-window zoom --animation-stiffness 350 & "
@@ -72,7 +77,6 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-#bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+Shift+s --release exec --no-startup-id flameshot gui
 #emojis
@@ -80,7 +84,7 @@ bindsym $mod+period  exec "ibus emoji"
 #bar
 exec_always --no-startup-id "killall polybar ; ~/.config/polybar/launch.sh & "
 
-# focus_follows_mouse no
+focus_follows_mouse no
 
 # change focus
 bindsym $mod+h focus left
@@ -284,24 +288,19 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
+bindsym $mod+9 exec --no-startup-id "i3lock -c 000000"
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b --animations --animation-window-mass 0.5 --animation-for-open-window zoom --animation-stiffness 350 --experimental-backends --backend glx &
-#exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 #exec --no-startup-id start_conky_maia
  #exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec "~/.config/set-multilingual-keyboard.sh"
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
+exec --no-startup-id "xautolock -time 10 -locker \"i3lock -c 000000\""
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -400,5 +399,4 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-#bindsym --release $mod+Shift+x --no-startup-id notify-send "Select window to make opaque" && compton-trans -s 80
-#bindsym --release $mod+Ctrl+Shift+x --no-startup-id notify-send "Select window to make 100%" && compton-trans -s -o 100
+exec dex -a -s ~/.config/autostart -e i3
