@@ -3,6 +3,12 @@
 
 This is a collection of my personal configuration files for various programs and tools that I use on my Linux system.
 
+## Video
+
+
+https://github.com/MohamedSa3eed/dot-files/assets/88633195/8a6e97de-cb97-43d6-b2ca-7828b1da1cac
+
+
 ## Installation
 
 To use these configuration files on your own system, you can clone this repository into your home directory:
