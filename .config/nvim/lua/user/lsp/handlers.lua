@@ -84,6 +84,9 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set('n', '<leader>k', function()
       vim.lsp.buf.format { async = true }
     end, opts)
+  vim.keymap.set('v', '<leader>k', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
 end
 
 M.on_attach = function(client, bufnr)

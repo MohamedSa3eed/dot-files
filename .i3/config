@@ -46,6 +46,7 @@ exec --no-startup-id volumeicon
 exec --no-startup-id "python ~/.config/bar.py"
 exec --no-startup-id "~/.config/BATCONTROL.sh"
 exec_always "~/.config/set-multilingual-keyboard.sh"
+# from xev
 bindsym XF86Launch1 exec "rog-control-center"
 bindsym XF86KbdBrightnessUp exec "asusctl -n"
 bindsym XF86KbdBrightnessDown exec "asusctl -p"
@@ -65,7 +66,7 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec alacritty -e 'bmenu'
-bindsym $mod+F2 exec brave
+bindsym $mod+F2 exec brave -password-store=basic
 #bindsym $mod+F3 exec dolphin
 bindsym $mod+F4 exec ~/mypc/Program\ Files\ \(x86\)/Labcenter\ Electronics/Proteus\ 8\ Professional/BIN/PDS.EXE
  bindsym $mod+F3 exec alacritty -e 'ranger'
@@ -292,7 +293,7 @@ bindsym $mod+9 exec --no-startup-id "i3lock -c 000000"
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b --animations --animation-window-mass 0.5 --animation-for-open-window zoom --animation-stiffness 350 --experimental-backends --backend glx &
+exec --no-startup-id nitrogen --restore; sleep 1; picom --experimental-backends -b
 exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
@@ -300,7 +301,7 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 #exec --no-startup-id start_conky_maia
  #exec --no-startup-id start_conky_green
-exec --no-startup-id "xautolock -time 10 -locker \"i3lock -c 000000\""
+#exec --no-startup-id "xautolock -time 10 -locker \"i3lock -c 000000\""
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:

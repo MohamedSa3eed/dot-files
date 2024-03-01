@@ -1,0 +1,104 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#1d1f21"
+blue = "#83b6af"
+cyan = "#87c095"
+#gray = "#868d80"
+green = "#a7c080"
+magenta = "#d39bb6"
+red = "#e68183"
+white = "#c5c8c6"
+yellow = "#d9bb80"
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[colors.dim]
+black = "#131415"
+blue = "#556a7d"
+cyan = "#5b7d78"
+green = "#777c44"
+magenta = "#75617b"
+red = "#864343"
+white = "#828482"
+yellow = "#9e824c"
+
+[colors.normal]
+black = "#1d1f21"
+blue = "#83b6af"
+cyan = "#87c095"
+#gray = "#868d80"
+green = "#a7c080"
+magenta = "#d39bb6"
+red = "#e68183"
+white = "#c5c8c6"
+yellow = "#d9bb80"
+
+[colors.primary]
+background = "#2d353b"
+foreground = "#d3c6aa"
+
+[cursor]
+blink_interval = 750
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.normal]
+family = "monospace"
+style = "Bold"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Super|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mode = "~Alt"
+mods = "Shift"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+opacity = 1
+
+[window.dimensions]
+columns = 0
+lines = 0
+
+[window.padding]
+x = 0
+y = 0
+
+[window.position]
+x = 0
+y = 0

@@ -11,8 +11,8 @@ autoload -U colors && colors
 PS1="%B%{$fg[red]%}<%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}>%{$reset_color%}$%b "
 
 #History
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zhistory
 
 
@@ -27,6 +27,9 @@ _comp_options+=(globdots)   # Include hidden files.
 bindkey -v
 export KEYTIMEOUT=1
 export EDITOR=/usr/bin/nvim
+
+#variables
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 #alias 
 alias ls='lsd -alh'
@@ -47,4 +50,3 @@ alias v='nvim'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-#typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet

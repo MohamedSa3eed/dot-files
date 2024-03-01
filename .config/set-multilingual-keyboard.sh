@@ -2,5 +2,5 @@
 
 setxkbmap -layout us,ara
 setxkbmap -option 'grp:win_space_toggle'
-killall xxkb
-xxkb &
+#killall xxkb
+#xxkb &

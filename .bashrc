@@ -144,3 +144,4 @@ ex ()
 [ -r /home/mohamed/.byobu/prompt ] && . /home/mohamed/.byobu/prompt   #byobu-prompt#
 set -o vi 
 jp2a Pictures/stikers/omnitrix.png --size=30x15 --color -i
+. "$HOME/.cargo/env"
