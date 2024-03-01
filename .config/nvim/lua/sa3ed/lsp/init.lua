@@ -14,6 +14,6 @@ lspconfig.dockerls.setup {}
 lspconfig.csharp_ls.setup {}
 --lspconfig.oelint.setup {}
 
-require "user.lsp.mason"
-require("user.lsp.handlers").setup()
-require "user.lsp.null-ls"
+require "sa3ed.lsp.mason"
+require("sa3ed.lsp.handlers").setup()
+require "sa3ed.lsp.null-ls"
