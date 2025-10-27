@@ -27,19 +27,39 @@ _comp_options+=(globdots)   # Include hidden files.
 bindkey -v
 export KEYTIMEOUT=1
 export EDITOR=/usr/bin/nvim
+export BROWSER=/usr/bin/brave
+export TERMINAL=kitty
 
 #variables
-export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt6ct
 
 #alias 
-alias ls='lsd -alh'
+alias ls='lsd'
+alias ll='lsd -alh'
 alias cat='bat'
 alias pc='cd ~/mypc/pc'
 alias mypc='thunar ~/mypc/pc &'
-alias iti="cd ~/mypc/pc/iti"
+#alias iti="cd ~/mypc/pc/iti"
 #alias proteus="~/mypc/Program\ Files\ \(x86\)/Labcenter\ Electronics/Proteus\ 8\ Professional/BIN/PDS.EXE &"
 alias cls='clear'
 alias v='nvim'
+alias sv='sudo -E nvim'
+alias w='curl wttr.in'
+alias w2='curl v2.wttr.in'
+## mkdir and cd
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+# yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # Load zsh plugins
  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
@@ -50,3 +70,8 @@ alias v='nvim'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/mohamed/.dart-cli-completion/zsh-config.zsh ]] && . /home/mohamed/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
