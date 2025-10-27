@@ -1,0 +1,207 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+
+(
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    browser_column_widths: [20, 30, 60],
+    symbols: (song: "󰎈 ",dir: "󰉋 ",marker: " ",ellipsis: "..."),
+    text_color: "#e0def4",
+    tab_bar: (
+        enabled: true,
+        active_style: (bg:"#1E1E2E" ,fg: "#FAB387", modifiers: "Bold"),
+        //inactive_style: (fg: "#908caa", modifiers: ""),
+    ),
+    highlighted_item_style: (fg: "#A6E3A1", modifiers: "Bold"),
+    current_item_style: (fg: "#89B4FA", bg: "#1E1E2E", modifiers: "Bold"),
+    borders_style: (fg: "#6e6a86", modifiers: "Bold"),
+    highlight_border_style: (fg: "#f6c177"),
+    progress_bar: (
+        symbols: ["", "█", "", "█", ""],
+        track_style: (fg: "#26233a"),
+        elapsed_style: (fg: "#FAB387"),
+        thumb_style: (fg: "#89B4FA"),
+    ),
+    scrollbar: (
+        symbols: ["│", "█", "▲", "▼"],
+        track_style: (fg: "#6e6a86"),
+        ends_style: (fg: "#6e6a86"),
+        thumb_style: (fg: "#f6c177"),
+    ),
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+            (kind: Property(Title)),
+            (kind: Text(" - ")),
+            (kind: Property(Artist)),
+            ]),
+            default: (kind: Property(Filename))
+        ),
+    ],
+    song_table_format: [
+        (
+            prop: (kind: Property(Title), style: (fg: "#9ccfd8"),
+                highlighted_item_style: (fg: "#191724", modifiers: "Bold"),
+                default: (kind: Property(Filename), style: (fg: "#6e6a86"),)
+            ),
+            width: "50%",
+        ),
+        (
+            prop: (kind: Property(Artist), style: (fg: "#ebbcba"),
+                default: (kind: Text("Unknown Artist"), style: (fg: "#908caa"))
+            ),
+            width: "45%",
+        ),
+        (
+            prop: (kind: Property(Duration), style: (fg: "#f6c177")),
+            width: "10%",
+            alignment: Right,
+        ),
+    ],
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Property(Status(StateV2(playing_label: "  ", paused_label: " ", stopped_label: " ⏹️"))), style: (fg: "#9ccfd8", modifiers: "Bold")),
+                ],
+                center: [
+                    (kind: Property(Song(Title)), style: (fg: "#e0def4",modifiers: "Bold"),
+                        default: (kind: Property(Song(Filename)), style: (fg: "#e0def4",modifiers: "Bold"))
+                    )
+                ],
+                right: [
+                    (kind: Text("Vol: "), style: (fg: "#f6c177", modifiers: "Bold")),
+                    (kind: Property(Status(Volume)), style: (fg: "#f6c177", modifiers: "Bold")),
+                    (kind: Text("% "), style: (fg: "#f6c177", modifiers: "Bold"))
+                ]
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed)),style: (fg: "#e0def4")),
+                    (kind: Text("/"),style: (fg: "#6e6a86")),
+                    (kind: Property(Status(Duration)),style: (fg: "#e0def4")),
+                ],
+                center: [
+                    (kind: Property(Song(Artist)), style: (fg: "#ebbcba", modifiers: "Bold"),
+                        default: (kind: Text("Unknown Artist"), style: (fg: "#eb6f92", modifiers: "Bold"))
+                    ),
+                ],
+                right: [
+                    (
+                        kind: Property(Widget(States(
+                            active_style: (fg: "#c4a7e7", modifiers: "Bold"),
+                            separator_style: (fg: "#908caa")))
+                        ),
+                        style: (fg: "#908caa")
+                    ),
+                ]
+            ),
+        ],
+    ),
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "4",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                    (
+                            size: "100%",
+                            pane: Split(
+                                direction: Vertical,
+                                panes: [
+                                (
+                                        size: "4",
+                                        borders: "ALL",
+                                        pane: Pane(Header),
+                                    ),
+                                ]
+                            )
+                        ),
+                    ]
+                ),
+            ),
+            (
+                size: "3",
+                pane: Pane(Tabs),
+            ),
+            (
+                size: "100%",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            borders: "NONE",
+                            pane: Pane(TabContent),
+                        ),
+                    ]
+                ),
+            ),
+            (
+                size: "3",
+                borders: "TOP | BOTTOM",
+                pane: Pane(ProgressBar),
+            ),
+        ],
+    ),
+  cava: (
+    // symbols that will be used to draw the bar in the visualiser, in ascending order of
+    // fill fraction
+    bar_symbols: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+    // similar to bar_symbols but these are used for the top-down rendering, meaning for orientation
+    // "Horizontal" and "Top"
+    inverted_bar_symbols: ['▔', '🮂', '🮃', '▀', '🮄', '🮅', '🮆', '█'],
+
+    //bg_color: "black", // background color, defaults to rmpc's bg color if not provided
+    bar_width: 1, // width of a single bar in columns
+    bar_spacing: 1, // free space between bars in columns
+
+    // Possible values are "Top", "Bottom" and "Horizontal". Top makes the bars go from top to
+    // bottom, "Bottom" is from bottom up, and "Horizontal" is split in the middle with bars going
+    // both down and up from there.
+    // Using non-default symbols with "Top" and "Horizontal" may produce undesired output.
+    orientation: Bottom,
+
+    // Colors can be configured in three different ways: a single color, different colors
+    // per row and a gradient. You can use the same colors as everywhere else. Only specify
+    // one of these:
+
+    // Every bar symbol will be red
+    //bar_color: Single("red"),
+
+    // The first two rows(two lowest amplitudes) will be red, after that two green rows
+    // and the rest will be blue. You can have as many as you want here. The last value
+    // will be used if the height exceeds the length of this array.
+   // bar_color: Rows([
+   //     "red",
+   //     "red",
+   //     "green",
+   //     "green",
+   //     "blue",
+   // ])
+
+    // A simple color gradient. This is a map where keys are percent values of the height
+    // where the color starts. After that it is linearly interpolated towards the next value.
+    // In this example, the color will start at green for the lowest amplitudes, go towards
+    // blue at half amplitudes and finishing as red for the highest values. Keys must be between
+    // 0 and 100 and if the first or last key are not 0 and 100 respectively, the lowest and highest
+    // value will be used as 0 and 100. Only hex and RGB colors are supported here and your terminal
+    // must support them as well!
+    bar_color: Gradient({
+          0: "rgb(  0, 255,   0)",
+         50: "rgb(  0,   0, 255)",
+        100: "rgb(255,   0,   0)",
+    })
+),
+)
+

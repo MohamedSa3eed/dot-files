@@ -1,0 +1,292 @@
+* {
+    /*font-family: "JetBrains Mono Nerd Font";*/
+    font-family: "JetBrainsMono Nerd Font";
+    /*font-family: "Iosevka Nerd Font";*/
+    /*font-family: "Font Awesome 5 Free";*/
+    /*font-weight: bold; */
+    font-size: 15px;
+}
+
+window#waybar {
+  background: #0F0F17; 
+  /*background-color: rgba(0,0,0,0) ;*/
+  /*  border-radius: 15px; */
+  /*  border: 2px solid #124323; */
+  /* border: 0px solid #A1BDCE; */
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+
+tooltip {
+  background: #171717;
+  color: #A1BDCE;
+  font-size: 13px;
+  border-radius: 7px;
+  border: 2px solid #101a24;
+}
+#workspaces{
+background: rgba(23, 23, 23, 0.0);
+  color: #888789;
+  box-shadow: none;
+  text-shadow: none;
+  border-radius: 9px;
+  transition: 0.2s ease;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 1px;
+}
+
+
+#workspaces button {
+  background: rgba(23, 23, 23, 0.0);
+  color: #A1BDCE;
+  box-shadow: none;
+	text-shadow: none;
+  border-radius: 9px;
+  transition: 0.2s ease;
+  padding-left: 4px;
+  padding-right: 4px;
+  /*animation: ws_normal 20s ease-in-out 1; */
+}
+
+
+
+#workspaces button.active {
+  /* background-image: url("/home/anik/Documents/bar1.png");*/
+  color: #A1BDCE;   
+  transition: all 0.3s ease;
+  padding-left: 4px;
+  padding-right: 4px;
+  /*  transition: all 0.4s cubic-bezier(.55,0.68,.48,1.682); */
+}
+
+#workspaces button:hover {
+  background: none;
+  color: #72D792;
+  animation: ws_hover 20s ease-in-out 1;
+  transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+
+#tray menu * {
+    min-height: 16px;
+    font-weight: bold;
+    font-size: 18px;
+    /*color: #9488e3;*/
+    color: #ed9c7f;
+}
+
+#custom-spacer{
+opacity: 0.0;
+}
+
+#backlight{
+    color: #2096C0;
+    background: rgba(23, 23, 23, 0.0);
+    font-weight: normal;
+    font-size: 19px;
+    margin: 1px 0px 0px 0px;
+    padding-left: 0px;
+    padding-right: 4px;
+ 
+}
+
+#battery{
+  font-weight: bold;
+  font-size: 19px;
+  /*color: #a6d189;*/
+  color: #a9c291;
+  background:  rgba(23, 23, 23, 0.0);
+  opacity: 1;
+  margin: 0px 0px 0px 0px;
+  padding-left: 0px;
+  padding-right: 10px;
+ 
+}
+
+#battery.charging, #battery.plugged {
+	/*color: #E8EDF0;*/
+  color: #a9c291;
+	
+}
+
+#battery.critical:not(.charging) {
+  color: #e68395;
+}
+
+#idle_inhibitor{
+  color: #24966e;
+  background: @bar-bg;
+  opacity: 1;
+  margin: 4px 0px 4px 0px;
+  padding-left: 2px;
+  padding-right: 8px;
+
+}
+
+#clock{
+  color: #2096C0;
+  /*color: #A1BDCE;*/
+  font-size: 18px;
+  /*font-weight: bold;*/
+  font-family: "Font Awesome 5 Free";
+  background: rgba(23, 23, 23, 0.0);
+  opacity: 1;
+  margin: 3px 0px 0px 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  
+}
+
+#pulseaudio{
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: normal;
+  font-size: 18px;
+  /*color: #6F8FDB;*/
+  color: #b192de;
+  background:  rgba(22, 19, 32, 0.0);
+  opacity: 1;
+  margin: 0px 0px 0px 0px;
+  padding-left: 3px;
+  padding-right: 10px;
+}
+
+#cpu{
+  font-family: "JetBrains Mono Nerd Font";
+  font-weight: bold;
+  font-size: 19px;
+  /*color: #915CAF;*/
+  color: #75aed2;
+}
+
+#custom-gpuinfo,
+#language,
+#memory{
+    /*font-family: "Font Awesome 5 Free";*/
+    font-weight: bold;
+    font-size: 20px;
+    color: #e9c299;
+}
+
+#network{
+    /*color: #A1BDCE;*/
+  color: #ed9f80;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 18px;
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+#custom-menu2,
+#custom-menu{
+  color: #E8EDF0;
+  background:  rgba(23, 23, 23, 0.0);
+  margin: 0px 0px 0px 0px;
+  padding-left: 1px;
+  padding-right: 1px;
+  opacity: 0.1
+}
+
+#tray,
+#custom-updates{
+  color: #A1BDCE;
+  font-family: "Martian Mono";
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+  background: #A1BDCE;
+  background-color: transparent;
+  box-shadow: none;
+  margin-right: 7px;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+  margin-top: -3px;
+  min-width: 90px;
+  min-height: 10px;
+  margin-bottom: -4px;
+  border-radius: 8px;
+  background: #343434;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+  border-radius: 8px;
+  background-color: #2096C0;
+}
+
+/* Style for launchers */
+
+#custom-expand {
+    min-width: 25px;
+    color: #ed9c7f;
+    font-size: 16px;
+}
+#custom-backlight {
+    min-width: 25px;
+    color: #A1BDCE;
+    font-size: 16px;
+    padding-right: 5px;
+}
+
+#temperature{
+  font-weight: bold;
+  font-size: 18;
+  padding-right: 2px;
+  color: #a9c291;
+}
+
+#power-profiles-daemon {
+  font-family: "Font Awesome 5 Free";
+  font-size: 18px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+#power-profiles-daemon.power-saver {
+	/*color: #E8EDF0;*/
+  color: #a9c291;
+}
+#power-profiles-daemon.balanced {
+  color: #75aed2;
+}
+#power-profiles-daemon.performance {
+    color: #e68395;
+}
+
+#custom-forecast {
+  font-family: "Weather Icons";
+  color: #a9c291;
+  font-size: 18px;
+}
+
+#custom-hyprsunset {
+  font-size: 18px;
+  color: #b192de;
+}
+#custom-nvidia {
+  font-size: 19px;
+  color: #e78395;
+  
+}
+
+#custom-updates {
+  font-size: 19px;
+}
+
+#custom-cava {
+  color: #e78395;
+}
+
+#custom-notification {
+  font-family: "JetBrains Mono Nerd Font";
+  font-size: 17px;
+  color: #A1BDCE;
+  /*margin: 2px 0px 0px 0px;*/
+  padding-left: 1px;
+  padding-right: 5px;
+}
